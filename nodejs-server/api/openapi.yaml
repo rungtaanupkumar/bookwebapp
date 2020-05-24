@@ -1,0 +1,1990 @@
+openapi: 3.0.1
+info:
+  title: Paddy Transport System
+  description: API Specification for the Paddy Transport System
+  termsOfService: http://paddytransport.io/terms/
+  contact:
+    email: demo@demo.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/rungtaanupkumar/PaddyTransport/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://paddytransport.io/v1/api
+- url: http://paddytransport.io/v1/api
+tags:
+- name: locations
+- name: systemusers
+- name: vehicles
+- name: workorders
+- name: vehiclequeue
+- name: trips
+- name: invoices
+- name: payments
+paths:
+  /locations:
+    get:
+      tags:
+      - locations
+      summary: Get list of locations
+      operationId: getLocations
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+                x-content-type: application/json
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Locations
+    put:
+      tags:
+      - locations
+      summary: Update Location
+      operationId: updateLocation
+      requestBody:
+        description: Location object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      responses:
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Pet not found
+          content: {}
+        "405":
+          description: Validation exception
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Locations
+    post:
+      tags:
+      - locations
+      summary: Create new location
+      operationId: addLocation
+      requestBody:
+        description: Location object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      responses:
+        "405":
+          description: Invalid input
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Locations
+    delete:
+      tags:
+      - locations
+      summary: Deletes a Location
+      operationId: deleteLocation
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: locationId
+        in: path
+        description: Location id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Location not found
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-swagger-router-controller: Locations
+  /locations/{locationId}:
+    get:
+      tags:
+      - locations
+      summary: Get Location by Id
+      operationId: getLocationById
+      parameters:
+      - name: locationId
+        in: path
+        description: 'Id of the location to be fetched. Use user1 for testing. '
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        "400":
+          description: Invalid location id supplied
+          content: {}
+        "404":
+          description: Location not found
+          content: {}
+      x-swagger-router-controller: Locations
+  /systemusers:
+    get:
+      tags:
+      - systemusers
+      summary: Get list of SystemUser
+      operationId: getSystemUsers
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+                x-content-type: application/json
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Systemusers
+    put:
+      tags:
+      - systemusers
+      summary: Update SystemUser
+      operationId: updateSystemUser
+      requestBody:
+        description: Location object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      responses:
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Pet not found
+          content: {}
+        "405":
+          description: Validation exception
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Systemusers
+    post:
+      tags:
+      - systemusers
+      summary: Create new SystemUser
+      operationId: addSystemUser
+      requestBody:
+        description: Location object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      responses:
+        "405":
+          description: Invalid input
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Systemusers
+    delete:
+      tags:
+      - systemusers
+      summary: Deletes a SystemUser
+      operationId: deleteSystemUser
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: locationId
+        in: path
+        description: Location id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Location not found
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-swagger-router-controller: Systemusers
+  /systemusers/{systemUserId}:
+    get:
+      tags:
+      - systemusers
+      summary: Get SystemUser by Id
+      operationId: getSystemUserById
+      parameters:
+      - name: systemUserId
+        in: path
+        description: 'Id of the location to be fetched. Use user1 for testing. '
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        "400":
+          description: Invalid location id supplied
+          content: {}
+        "404":
+          description: Location not found
+          content: {}
+      x-swagger-router-controller: Systemusers
+  /systemusers/createWithList:
+    post:
+      tags:
+      - systemusers
+      summary: Creates list of system users with given input list
+      operationId: createSystemUsersWithListInput
+      requestBody:
+        description: List of System User object
+        content:
+          '*/*':
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SystemUser'
+        required: true
+      responses:
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Systemusers
+  /systemusers/login:
+    get:
+      tags:
+      - systemusers
+      summary: Logs user into the system
+      operationId: loginSystemUser
+      parameters:
+      - name: username
+        in: query
+        description: The user name for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: The password for login in clear text
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              style: simple
+              explode: false
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+                x-content-type: application/xml
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: Invalid username/password supplied
+          content: {}
+      x-swagger-router-controller: Systemusers
+  /systemusers/logout:
+    get:
+      tags:
+      - systemusers
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        default:
+          description: successful operation
+          content: {}
+      x-swagger-router-controller: Systemusers
+  /systemusers/{userName}:
+    get:
+      tags:
+      - systemusers
+      summary: Get user by user name
+      operationId: getUserByName
+      parameters:
+      - name: userName
+        in: path
+        description: 'The name that needs to be fetched. Use user1 for testing. '
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SystemUser'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemUser'
+        "400":
+          description: Invalid username supplied
+          content: {}
+        "404":
+          description: User not found
+          content: {}
+      x-swagger-router-controller: Systemusers
+  /vehicles:
+    get:
+      tags:
+      - vehicles
+      summary: Get list of Vehicles
+      operationId: getVehicles
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+                x-content-type: application/json
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Vehicles
+    put:
+      tags:
+      - vehicles
+      summary: Update Vehicle
+      operationId: updateVehicle
+      requestBody:
+        description: Vehicle object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      responses:
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Vehicle not found
+          content: {}
+        "405":
+          description: Validation exception
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Vehicles
+    post:
+      tags:
+      - vehicles
+      summary: Create new Vehicle
+      operationId: addVehicle
+      requestBody:
+        description: Vehicle object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      responses:
+        "405":
+          description: Invalid input
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Vehicles
+    delete:
+      tags:
+      - vehicles
+      summary: Deletes a Vehicle
+      operationId: deleteVehicle
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: locationId
+        in: path
+        description: Vehicle id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: Vehicle not found
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-swagger-router-controller: Vehicles
+  /vehicles/{vehicleId}:
+    get:
+      tags:
+      - vehicles
+      summary: Get Vehicle by Id
+      operationId: getVehicleById
+      parameters:
+      - name: vehicleId
+        in: path
+        description: 'Id of the location to be fetched. Use user1 for testing. '
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+        "400":
+          description: Invalid Vehicle id supplied
+          content: {}
+        "404":
+          description: Vehicle not found
+          content: {}
+      x-swagger-router-controller: Vehicles
+  /workorders:
+    get:
+      tags:
+      - workorders
+      summary: Get list of WorkOrders
+      operationId: getWorkOrders
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkOrder'
+                x-content-type: application/json
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Workorders
+    put:
+      tags:
+      - workorders
+      summary: Update WorkOrder
+      operationId: updateWorkOrder
+      requestBody:
+        description: WorkOrder object that needs to be updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkOrder'
+        required: true
+      responses:
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: WorkOrder not found
+          content: {}
+        "405":
+          description: Validation exception
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Workorders
+    post:
+      tags:
+      - workorders
+      summary: Create new WorkOrder
+      operationId: addWorkOrder
+      requestBody:
+        description: WorkOrder object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkOrder'
+        required: true
+      responses:
+        "405":
+          description: Invalid input
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Workorders
+    delete:
+      tags:
+      - workorders
+      summary: Deletes a WorkOrder
+      operationId: deleteWorkOrder
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: locationId
+        in: path
+        description: WorkOrder id to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: WorkOrder not found
+          content: {}
+      security:
+      - petstore_auth:
+        - write:pets
+        - read:pets
+      x-swagger-router-controller: Workorders
+  /workorders/{workOrderId}:
+    get:
+      tags:
+      - workorders
+      summary: Get WorkOrder by Id
+      operationId: getWorkOrderById
+      parameters:
+      - name: workOrderId
+        in: path
+        description: 'Id of the WorkOrder to be fetched. Use user1 for testing. '
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkOrder'
+        "400":
+          description: Invalid WorkOrder id supplied
+          content: {}
+        "404":
+          description: WorkOrder not found
+          content: {}
+      x-swagger-router-controller: Workorders
+  /vehiclequeue/addToQueue:
+    post:
+      tags:
+      - vehiclequeue
+      description: Add Vehicle to the Queue By WorkOrder
+      operationId: addVehicleToQueue
+      requestBody:
+        description: Vehicle and WorkOrder Id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleQueue'
+        "400":
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Vehiclequeue
+  /vehiclequeue/removeFromQueue:
+    post:
+      tags:
+      - vehiclequeue
+      description: Remove Vehicle from the Queue By WorkOrder
+      operationId: removeVehicleQueue
+      requestBody:
+        description: Vehicle and WorkOrder Id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_1'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid WorkOrder
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Vehiclequeue
+  /vehiclequeue/getByWorkOrder/{workOrderId}:
+    get:
+      tags:
+      - vehiclequeue
+      description: Get Vehicles in the Queue By WorkOrder
+      operationId: getVehicleQueueByWorkOrder
+      parameters:
+      - name: workOrderId
+        in: path
+        description: 'Id of the WorkOrder to be fetched. Use user1 for testing. '
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleQueue'
+        "400":
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Vehiclequeue
+  /trips:
+    post:
+      tags:
+      - trips
+      description: Create new Trip
+      operationId: addTrip
+      requestBody:
+        description: Trip object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trip'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleQueue'
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Trips
+  /trips/{tripId}:
+    get:
+      tags:
+      - trips
+      description: Get Trip
+      operationId: getTrip
+      parameters:
+      - name: tripId
+        in: path
+        description: Id of the Trip
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trip'
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Trips
+  /trips/{tripId}/updateStarted:
+    put:
+      tags:
+      - trips
+      description: Update Trip Started
+      operationId: updateTripStarted
+      parameters:
+      - name: tripId
+        in: path
+        description: Id of the Trip to be started
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Trips
+  /trips/{tripId}/updateCompleted:
+    put:
+      tags:
+      - trips
+      description: Update Trip Completed
+      operationId: updateTripCompleted
+      parameters:
+      - name: tripId
+        in: path
+        description: Id of the Trip to be completed
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Trips
+  /trips/{tripId}/updateHalted:
+    put:
+      tags:
+      - trips
+      description: Update Trip Halted
+      operationId: updateTripHalted
+      parameters:
+      - name: tripId
+        in: path
+        description: Id of the Trip to be halted
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Trips
+  /trips/{tripId}/updateResumed:
+    put:
+      tags:
+      - trips
+      description: Update Trip Resumed
+      operationId: updateTripResumed
+      parameters:
+      - name: tripId
+        in: path
+        description: Id of the Trip to be resumed
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Trips
+  /trips/{tripId}/updateCancelled:
+    put:
+      tags:
+      - trips
+      description: Update Trip Cancelled
+      operationId: updateTripCancelled
+      parameters:
+      - name: tripId
+        in: path
+        description: Id of the Trip to be cancelled
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Trips
+  /invoices:
+    post:
+      tags:
+      - invoices
+      description: Generate new Invoice
+      operationId: addInvoice
+      requestBody:
+        description: Invoice object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invoice'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Invoices
+  /invoices/{invoiceId}/updatePaid:
+    put:
+      tags:
+      - invoices
+      description: Update Invoice Paid
+      operationId: updateInvoicePaid
+      parameters:
+      - name: invoiceId
+        in: path
+        description: Id of the Invoice to be paid
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Invoices
+  /invoices/getByVehicleOwner/{systemUserId}:
+    get:
+      tags:
+      - invoices
+      description: Get Invoices for the vehicle owner
+      operationId: getInvoicesByVehicleOwner
+      parameters:
+      - name: systemUserId
+        in: path
+        description: Id of the VehicleOwner to be fetched.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        "400":
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Invoices
+  /invoices/getByLocation/{locationId}:
+    get:
+      tags:
+      - invoices
+      description: Get Invoices for the location
+      operationId: getInvoicesByLocation
+      parameters:
+      - name: locationId
+        in: path
+        description: Id of the Location to be fetched.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        "400":
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Invoices
+  /payments:
+    post:
+      tags:
+      - payments
+      description: Initiate Payment
+      operationId: addPayment
+      requestBody:
+        description: Payment object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Payments
+  /payments/{paymentId}/updateStatus:
+    put:
+      tags:
+      - payments
+      description: Update Payment Status
+      operationId: updatePaymentStatus
+      parameters:
+      - name: paymentId
+        in: path
+        description: Id of the Invoice to be paid
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content: {}
+        "400":
+          description: Invalid Input
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Payments
+components:
+  schemas:
+    Location:
+      required:
+      - locationName
+      - locationType
+      type: object
+      properties:
+        locationId:
+          type: integer
+          description: unique identifier
+          format: int64
+        locationName:
+          type: string
+          description: name of the location
+        locationType:
+          type: string
+          description: type of location
+          enum:
+          - MANDI
+          - MILL
+          - FCI
+        regNo:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
+          type: string
+        pincode:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        fax:
+          type: string
+        recordStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+      example:
+        regNo: regNo
+        pincode: pincode
+        locationName: locationName
+        address: address
+        city: city
+        locationType: MANDI
+        recordStatus: ACTIVE
+        phone: phone
+        locationId: 0
+        district: district
+        state: state
+        fax: fax
+        email: email
+    SystemUser:
+      required:
+      - userName
+      type: object
+      properties:
+        systemUserId:
+          type: integer
+          format: int64
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        employeeId:
+          type: string
+        designation:
+          type: string
+        gender:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        homeAddress:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        pincode:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        fax:
+          type: string
+        recordStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        userRoles:
+          type: string
+          enum:
+          - MANDIREP
+          - MILLREP
+          - FCIREP
+          - VEHICLEOWNER
+          - VEHICLEDRIVER
+      example:
+        lastName: lastName
+        country: country
+        pincode: pincode
+        gender: gender
+        city: city
+        systemUserId: 0
+        employeeId: employeeId
+        userName: userName
+        firstName: firstName
+        userRoles: MANDIREP
+        recordStatus: ACTIVE
+        phone: phone
+        district: district
+        location:
+          regNo: regNo
+          pincode: pincode
+          locationName: locationName
+          address: address
+          city: city
+          locationType: MANDI
+          recordStatus: ACTIVE
+          phone: phone
+          locationId: 0
+          district: district
+          state: state
+          fax: fax
+          email: email
+        designation: designation
+        state: state
+        fax: fax
+        email: email
+        homeAddress: homeAddress
+    Vehicle:
+      required:
+      - vehicleNo
+      type: object
+      properties:
+        vehicleId:
+          type: integer
+          format: int64
+        vehicleNo:
+          type: string
+        vehiclePermit:
+          type: string
+        vehicleType:
+          type: string
+        vehicleCapacity:
+          type: string
+        vehicleOwner:
+          $ref: '#/components/schemas/SystemUser'
+        recordStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+      example:
+        vehicleNo: vehicleNo
+        vehiclePermit: vehiclePermit
+        vehicleCapacity: vehicleCapacity
+        vehicleOwner:
+          lastName: lastName
+          country: country
+          pincode: pincode
+          gender: gender
+          city: city
+          systemUserId: 0
+          employeeId: employeeId
+          userName: userName
+          firstName: firstName
+          userRoles: MANDIREP
+          recordStatus: ACTIVE
+          phone: phone
+          district: district
+          location:
+            regNo: regNo
+            pincode: pincode
+            locationName: locationName
+            address: address
+            city: city
+            locationType: MANDI
+            recordStatus: ACTIVE
+            phone: phone
+            locationId: 0
+            district: district
+            state: state
+            fax: fax
+            email: email
+          designation: designation
+          state: state
+          fax: fax
+          email: email
+          homeAddress: homeAddress
+        recordStatus: ACTIVE
+        vehicleId: 0
+        vehicleType: vehicleType
+    WorkOrder:
+      required:
+      - vehicleNo
+      type: object
+      properties:
+        workOrderId:
+          type: integer
+          format: int64
+        workOrderDate:
+          type: string
+        source:
+          $ref: '#/components/schemas/Location'
+        destination:
+          $ref: '#/components/schemas/Location'
+        capacityToLoad:
+          type: string
+        loadTimeStart:
+          type: string
+        loadTimeEnd:
+          type: string
+        distanceCovered:
+          type: string
+        initiatedBy:
+          $ref: '#/components/schemas/SystemUser'
+        initiatedDate:
+          type: string
+        recordStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+      example:
+        initiatedDate: initiatedDate
+        loadTimeStart: loadTimeStart
+        recordStatus: ACTIVE
+        distanceCovered: distanceCovered
+        loadTimeEnd: loadTimeEnd
+        workOrderDate: workOrderDate
+        workOrderId: 0
+        source:
+          regNo: regNo
+          pincode: pincode
+          locationName: locationName
+          address: address
+          city: city
+          locationType: MANDI
+          recordStatus: ACTIVE
+          phone: phone
+          locationId: 0
+          district: district
+          state: state
+          fax: fax
+          email: email
+        initiatedBy:
+          lastName: lastName
+          country: country
+          pincode: pincode
+          gender: gender
+          city: city
+          systemUserId: 0
+          employeeId: employeeId
+          userName: userName
+          firstName: firstName
+          userRoles: MANDIREP
+          recordStatus: ACTIVE
+          phone: phone
+          district: district
+          location:
+            regNo: regNo
+            pincode: pincode
+            locationName: locationName
+            address: address
+            city: city
+            locationType: MANDI
+            recordStatus: ACTIVE
+            phone: phone
+            locationId: 0
+            district: district
+            state: state
+            fax: fax
+            email: email
+          designation: designation
+          state: state
+          fax: fax
+          email: email
+          homeAddress: homeAddress
+        capacityToLoad: capacityToLoad
+    VehicleQueue:
+      required:
+      - vehicleQueueId
+      type: object
+      properties:
+        vehicleQueueId:
+          type: integer
+          format: int64
+        workOrder:
+          $ref: '#/components/schemas/WorkOrder'
+        vehicleOrder:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vehicle'
+        queueDate:
+          type: string
+        recordStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+      example:
+        workOrder:
+          initiatedDate: initiatedDate
+          loadTimeStart: loadTimeStart
+          recordStatus: ACTIVE
+          distanceCovered: distanceCovered
+          loadTimeEnd: loadTimeEnd
+          workOrderDate: workOrderDate
+          workOrderId: 0
+          source:
+            regNo: regNo
+            pincode: pincode
+            locationName: locationName
+            address: address
+            city: city
+            locationType: MANDI
+            recordStatus: ACTIVE
+            phone: phone
+            locationId: 0
+            district: district
+            state: state
+            fax: fax
+            email: email
+          initiatedBy:
+            lastName: lastName
+            country: country
+            pincode: pincode
+            gender: gender
+            city: city
+            systemUserId: 0
+            employeeId: employeeId
+            userName: userName
+            firstName: firstName
+            userRoles: MANDIREP
+            recordStatus: ACTIVE
+            phone: phone
+            district: district
+            location:
+              regNo: regNo
+              pincode: pincode
+              locationName: locationName
+              address: address
+              city: city
+              locationType: MANDI
+              recordStatus: ACTIVE
+              phone: phone
+              locationId: 0
+              district: district
+              state: state
+              fax: fax
+              email: email
+            designation: designation
+            state: state
+            fax: fax
+            email: email
+            homeAddress: homeAddress
+          capacityToLoad: capacityToLoad
+        vehicleOrder:
+        - vehicleNo: vehicleNo
+          vehiclePermit: vehiclePermit
+          vehicleCapacity: vehicleCapacity
+          vehicleOwner:
+            lastName: lastName
+            country: country
+            pincode: pincode
+            gender: gender
+            city: city
+            systemUserId: 0
+            employeeId: employeeId
+            userName: userName
+            firstName: firstName
+            userRoles: MANDIREP
+            recordStatus: ACTIVE
+            phone: phone
+            district: district
+            location:
+              regNo: regNo
+              pincode: pincode
+              locationName: locationName
+              address: address
+              city: city
+              locationType: MANDI
+              recordStatus: ACTIVE
+              phone: phone
+              locationId: 0
+              district: district
+              state: state
+              fax: fax
+              email: email
+            designation: designation
+            state: state
+            fax: fax
+            email: email
+            homeAddress: homeAddress
+          recordStatus: ACTIVE
+          vehicleId: 0
+          vehicleType: vehicleType
+        - vehicleNo: vehicleNo
+          vehiclePermit: vehiclePermit
+          vehicleCapacity: vehicleCapacity
+          vehicleOwner:
+            lastName: lastName
+            country: country
+            pincode: pincode
+            gender: gender
+            city: city
+            systemUserId: 0
+            employeeId: employeeId
+            userName: userName
+            firstName: firstName
+            userRoles: MANDIREP
+            recordStatus: ACTIVE
+            phone: phone
+            district: district
+            location:
+              regNo: regNo
+              pincode: pincode
+              locationName: locationName
+              address: address
+              city: city
+              locationType: MANDI
+              recordStatus: ACTIVE
+              phone: phone
+              locationId: 0
+              district: district
+              state: state
+              fax: fax
+              email: email
+            designation: designation
+            state: state
+            fax: fax
+            email: email
+            homeAddress: homeAddress
+          recordStatus: ACTIVE
+          vehicleId: 0
+          vehicleType: vehicleType
+        recordStatus: ACTIVE
+        queueDate: queueDate
+        vehicleQueueId: 0
+    Trip:
+      required:
+      - tripId
+      type: object
+      properties:
+        tripId:
+          type: integer
+          format: int64
+        vehicleQueue:
+          $ref: '#/components/schemas/VehicleQueue'
+        distanceCovered:
+          type: number
+        rate:
+          type: number
+        amount:
+          type: number
+        loadedCapacity:
+          type: string
+        loadedDate:
+          type: string
+        tripCreatedBy:
+          $ref: '#/components/schemas/SystemUser'
+        currentTripStatus:
+          type: string
+        lastUpdatedBy:
+          $ref: '#/components/schemas/SystemUser'
+      example:
+        amount: 5.962133916683182377482808078639209270477294921875
+        distanceCovered: 6.02745618307040320615897144307382404804229736328125
+        rate: 1.46581298050294517310021547018550336360931396484375
+        loadedCapacity: loadedCapacity
+        currentTripStatus: currentTripStatus
+        loadedDate: loadedDate
+        tripId: 0
+        vehicleQueue:
+          workOrder:
+            initiatedDate: initiatedDate
+            loadTimeStart: loadTimeStart
+            recordStatus: ACTIVE
+            distanceCovered: distanceCovered
+            loadTimeEnd: loadTimeEnd
+            workOrderDate: workOrderDate
+            workOrderId: 0
+            source:
+              regNo: regNo
+              pincode: pincode
+              locationName: locationName
+              address: address
+              city: city
+              locationType: MANDI
+              recordStatus: ACTIVE
+              phone: phone
+              locationId: 0
+              district: district
+              state: state
+              fax: fax
+              email: email
+            initiatedBy:
+              lastName: lastName
+              country: country
+              pincode: pincode
+              gender: gender
+              city: city
+              systemUserId: 0
+              employeeId: employeeId
+              userName: userName
+              firstName: firstName
+              userRoles: MANDIREP
+              recordStatus: ACTIVE
+              phone: phone
+              district: district
+              location:
+                regNo: regNo
+                pincode: pincode
+                locationName: locationName
+                address: address
+                city: city
+                locationType: MANDI
+                recordStatus: ACTIVE
+                phone: phone
+                locationId: 0
+                district: district
+                state: state
+                fax: fax
+                email: email
+              designation: designation
+              state: state
+              fax: fax
+              email: email
+              homeAddress: homeAddress
+            capacityToLoad: capacityToLoad
+          vehicleOrder:
+          - vehicleNo: vehicleNo
+            vehiclePermit: vehiclePermit
+            vehicleCapacity: vehicleCapacity
+            vehicleOwner:
+              lastName: lastName
+              country: country
+              pincode: pincode
+              gender: gender
+              city: city
+              systemUserId: 0
+              employeeId: employeeId
+              userName: userName
+              firstName: firstName
+              userRoles: MANDIREP
+              recordStatus: ACTIVE
+              phone: phone
+              district: district
+              location:
+                regNo: regNo
+                pincode: pincode
+                locationName: locationName
+                address: address
+                city: city
+                locationType: MANDI
+                recordStatus: ACTIVE
+                phone: phone
+                locationId: 0
+                district: district
+                state: state
+                fax: fax
+                email: email
+              designation: designation
+              state: state
+              fax: fax
+              email: email
+              homeAddress: homeAddress
+            recordStatus: ACTIVE
+            vehicleId: 0
+            vehicleType: vehicleType
+          - vehicleNo: vehicleNo
+            vehiclePermit: vehiclePermit
+            vehicleCapacity: vehicleCapacity
+            vehicleOwner:
+              lastName: lastName
+              country: country
+              pincode: pincode
+              gender: gender
+              city: city
+              systemUserId: 0
+              employeeId: employeeId
+              userName: userName
+              firstName: firstName
+              userRoles: MANDIREP
+              recordStatus: ACTIVE
+              phone: phone
+              district: district
+              location:
+                regNo: regNo
+                pincode: pincode
+                locationName: locationName
+                address: address
+                city: city
+                locationType: MANDI
+                recordStatus: ACTIVE
+                phone: phone
+                locationId: 0
+                district: district
+                state: state
+                fax: fax
+                email: email
+              designation: designation
+              state: state
+              fax: fax
+              email: email
+              homeAddress: homeAddress
+            recordStatus: ACTIVE
+            vehicleId: 0
+            vehicleType: vehicleType
+          recordStatus: ACTIVE
+          queueDate: queueDate
+          vehicleQueueId: 0
+        tripCreatedBy:
+          lastName: lastName
+          country: country
+          pincode: pincode
+          gender: gender
+          city: city
+          systemUserId: 0
+          employeeId: employeeId
+          userName: userName
+          firstName: firstName
+          userRoles: MANDIREP
+          recordStatus: ACTIVE
+          phone: phone
+          district: district
+          location:
+            regNo: regNo
+            pincode: pincode
+            locationName: locationName
+            address: address
+            city: city
+            locationType: MANDI
+            recordStatus: ACTIVE
+            phone: phone
+            locationId: 0
+            district: district
+            state: state
+            fax: fax
+            email: email
+          designation: designation
+          state: state
+          fax: fax
+          email: email
+          homeAddress: homeAddress
+    Invoice:
+      required:
+      - amount
+      - rate
+      - trip
+      type: object
+      properties:
+        invoiceId:
+          type: integer
+          format: int64
+        invoiceNo:
+          type: string
+        trip:
+          $ref: '#/components/schemas/Trip'
+        additionalCharges:
+          type: number
+        deductions:
+          type: number
+        amountToBePaid:
+          type: number
+        vehicleOwner:
+          type: string
+        paymentStatus:
+          type: string
+          enum:
+          - PAID
+          - UNPAID
+      example:
+        trip:
+          amount: 5.962133916683182377482808078639209270477294921875
+          distanceCovered: 6.02745618307040320615897144307382404804229736328125
+          rate: 1.46581298050294517310021547018550336360931396484375
+          loadedCapacity: loadedCapacity
+          currentTripStatus: currentTripStatus
+          loadedDate: loadedDate
+          tripId: 0
+          vehicleQueue:
+            workOrder:
+              initiatedDate: initiatedDate
+              loadTimeStart: loadTimeStart
+              recordStatus: ACTIVE
+              distanceCovered: distanceCovered
+              loadTimeEnd: loadTimeEnd
+              workOrderDate: workOrderDate
+              workOrderId: 0
+              source:
+                regNo: regNo
+                pincode: pincode
+                locationName: locationName
+                address: address
+                city: city
+                locationType: MANDI
+                recordStatus: ACTIVE
+                phone: phone
+                locationId: 0
+                district: district
+                state: state
+                fax: fax
+                email: email
+              initiatedBy:
+                lastName: lastName
+                country: country
+                pincode: pincode
+                gender: gender
+                city: city
+                systemUserId: 0
+                employeeId: employeeId
+                userName: userName
+                firstName: firstName
+                userRoles: MANDIREP
+                recordStatus: ACTIVE
+                phone: phone
+                district: district
+                location:
+                  regNo: regNo
+                  pincode: pincode
+                  locationName: locationName
+                  address: address
+                  city: city
+                  locationType: MANDI
+                  recordStatus: ACTIVE
+                  phone: phone
+                  locationId: 0
+                  district: district
+                  state: state
+                  fax: fax
+                  email: email
+                designation: designation
+                state: state
+                fax: fax
+                email: email
+                homeAddress: homeAddress
+              capacityToLoad: capacityToLoad
+            vehicleOrder:
+            - vehicleNo: vehicleNo
+              vehiclePermit: vehiclePermit
+              vehicleCapacity: vehicleCapacity
+              vehicleOwner:
+                lastName: lastName
+                country: country
+                pincode: pincode
+                gender: gender
+                city: city
+                systemUserId: 0
+                employeeId: employeeId
+                userName: userName
+                firstName: firstName
+                userRoles: MANDIREP
+                recordStatus: ACTIVE
+                phone: phone
+                district: district
+                location:
+                  regNo: regNo
+                  pincode: pincode
+                  locationName: locationName
+                  address: address
+                  city: city
+                  locationType: MANDI
+                  recordStatus: ACTIVE
+                  phone: phone
+                  locationId: 0
+                  district: district
+                  state: state
+                  fax: fax
+                  email: email
+                designation: designation
+                state: state
+                fax: fax
+                email: email
+                homeAddress: homeAddress
+              recordStatus: ACTIVE
+              vehicleId: 0
+              vehicleType: vehicleType
+            - vehicleNo: vehicleNo
+              vehiclePermit: vehiclePermit
+              vehicleCapacity: vehicleCapacity
+              vehicleOwner:
+                lastName: lastName
+                country: country
+                pincode: pincode
+                gender: gender
+                city: city
+                systemUserId: 0
+                employeeId: employeeId
+                userName: userName
+                firstName: firstName
+                userRoles: MANDIREP
+                recordStatus: ACTIVE
+                phone: phone
+                district: district
+                location:
+                  regNo: regNo
+                  pincode: pincode
+                  locationName: locationName
+                  address: address
+                  city: city
+                  locationType: MANDI
+                  recordStatus: ACTIVE
+                  phone: phone
+                  locationId: 0
+                  district: district
+                  state: state
+                  fax: fax
+                  email: email
+                designation: designation
+                state: state
+                fax: fax
+                email: email
+                homeAddress: homeAddress
+              recordStatus: ACTIVE
+              vehicleId: 0
+              vehicleType: vehicleType
+            recordStatus: ACTIVE
+            queueDate: queueDate
+            vehicleQueueId: 0
+          tripCreatedBy:
+            lastName: lastName
+            country: country
+            pincode: pincode
+            gender: gender
+            city: city
+            systemUserId: 0
+            employeeId: employeeId
+            userName: userName
+            firstName: firstName
+            userRoles: MANDIREP
+            recordStatus: ACTIVE
+            phone: phone
+            district: district
+            location:
+              regNo: regNo
+              pincode: pincode
+              locationName: locationName
+              address: address
+              city: city
+              locationType: MANDI
+              recordStatus: ACTIVE
+              phone: phone
+              locationId: 0
+              district: district
+              state: state
+              fax: fax
+              email: email
+            designation: designation
+            state: state
+            fax: fax
+            email: email
+            homeAddress: homeAddress
+        additionalCharges: 6.02745618307040320615897144307382404804229736328125
+        vehicleOwner: vehicleOwner
+        amountToBePaid: 5.962133916683182377482808078639209270477294921875
+        invoiceId: 0
+        invoiceNo: invoiceNo
+        deductions: 1.46581298050294517310021547018550336360931396484375
+        paymentStatus: PAID
+    Payment:
+      required:
+      - paymentDate
+      - paymentMethod
+      - paymentRef
+      type: object
+      properties:
+        paymentId:
+          type: integer
+          format: int64
+        invoices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+        paymentRef:
+          type: string
+        paymentMethod:
+          type: string
+        paymentPayload:
+          type: object
+        paymentDate:
+          type: string
+        paidBy:
+          $ref: '#/components/schemas/SystemUser'
+    body:
+      type: object
+      properties:
+        workOrderId:
+          type: integer
+          format: int32
+        vehicleId:
+          type: integer
+          format: int32
+    body_1:
+      type: object
+      properties:
+        workOrderId:
+          type: integer
+          format: int32
+        vehicleId:
+          type: integer
+          format: int32
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://petstore.swagger.io/oauth/dialog
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
